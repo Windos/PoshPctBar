@@ -31,6 +31,8 @@ _See the [PowerShell Gallery](http://www.powershellgallery.com/packages/PoshPctB
 ## History
 * [v0.2.0](https://github.com/Windos/PoshPctBar/releases/v0.2.0)
   * Customizable percentage bar characters.
+  * Optional leading character (e.g. [---->     ])
+  * Customizable length of bar.
 * [v0.1.0](https://github.com/Windos/PoshPctBar/releases/v0.1.0)
   * First version with basic functionality.
 

@@ -55,6 +55,8 @@
 
         [char] $LeadingCharacter,
 
+        [int] $BarLength = 10,
+
         [Parameter(Mandatory=$false,
                    Position = 3,
                    ParameterSetName='Border')]
@@ -70,17 +72,16 @@
 	{
         try
         {
-            $PercentBar = $PercentCharacter.ToString() * ([System.Math]::Round(( $Percentage )*100)/10) 
+            $PercentBar = $PercentCharacter.ToString() * ($Percentage * $BarLength) 
 
             if ($LeadingCharacter)
             {
-                $PercentBar += $LeadingCharacter.ToString() + $RemainderCharacter.ToString() * (9-([System.Math]::Round(( $Percentage )*100)/10))
+                $PercentBar += $LeadingCharacter.ToString()
+                $BarLength = $BarLength - 1
             }
-            else
-            {
-                $PercentBar += $RemainderCharacter.ToString() * (10-([System.Math]::Round(( $Percentage )*100)/10))
-            }
-            
+
+            $PercentBar += $RemainderCharacter.ToString() * ($BarLength - ($Percentage * $BarLength))
+
             if (!$NoBorder)
             {
                 $PercentBar = $Border[0] + $PercentBar + $Border[1]
