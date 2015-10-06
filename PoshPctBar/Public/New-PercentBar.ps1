@@ -30,6 +30,19 @@
 
         xxxxxxxx..
 
+        .EXAMPLE
+        New-PercentBar -Percentage 0.8 -PercentCharacter '-' -RemainderCharacter ' '
+        
+        This example uses customized characters:
+	    
+	    [--------  ]
+    	
+        .EXAMPLE
+        C:\> New-PercentBar -Percentage 0.2 -BarLength 20
+	    This example is twice as long as the default percentage bar:
+	    
+	    [xxxx................]
+
         .INPUTS
         System.Decimal
         

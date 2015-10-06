@@ -27,6 +27,16 @@ _See the [PowerShell Gallery](http://www.powershellgallery.com/packages/PoshPctB
     PS C:\> 0.8 | New-PercentBar -NoBorder
     
     xxxxxxxx..
+	
+	# This example uses customized characters:
+	PS C:\> New-PercentBar -Percentage 0.8 -PercentCharacter '-' -RemainderCharacter ' '
+	
+	[--------  ]
+	
+	# This example is twice as long as the default percentage bar:
+	PS C:\> New-PercentBar -Percentage 0.2 -BarLength 20
+	
+	[xxxx................]
 
 ## History
 * [v0.2.0](https://github.com/Windos/PoshPctBar/releases/v0.2.0)
