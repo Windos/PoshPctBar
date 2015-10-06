@@ -30,6 +30,19 @@
 
         xxxxxxxx..
 
+        .EXAMPLE
+        New-PercentBar -Percentage 0.8 -PercentCharacter '-' -RemainderCharacter ' '
+        
+        This example uses customized characters:
+	    
+	    [--------  ]
+    	
+        .EXAMPLE
+        C:\> New-PercentBar -Percentage 0.2 -BarLength 20
+	    This example is twice as long as the default percentage bar:
+	    
+	    [xxxx................]
+
         .INPUTS
         System.Decimal
         
@@ -38,7 +51,7 @@
     #>
 
     [CmdletBinding(DefaultParameterSetName='Border')]
-    [OutputType("System.String")]
+    [OutputType('System.String')]
     param
     (
         [Parameter(Mandatory = $true,
@@ -49,14 +62,21 @@
         [ValidateNotNullOrEmpty()]
         [decimal] $Percentage,
 
+        [char] $PercentCharacter = 'x',
+
+        [char] $RemainderCharacter = '.',
+
+        [char] $LeadingCharacter,
+
+        [int] $BarLength = 10,
+
         [Parameter(Mandatory=$false,
-                   Position = 1,
+                   Position = 3,
                    ParameterSetName='Border')]
         [ValidateSet('[]', '{}', '()', '||', '/\', '--')]
         [string] $Border = '[]',
 
         [Parameter(Mandatory=$true,
-                   Position = 1,
                    ParameterSetName='NoBorder')]
         [switch] $NoBorder
     )
@@ -65,7 +85,15 @@
 	{
         try
         {
-            $PercentBar = 'x' * ([System.Math]::Round(( $Percentage )*100)/10) + '.' * (10-([System.Math]::Round(( $Percentage )*100)/10))
+            $PercentBar = $PercentCharacter.ToString() * ($Percentage * $BarLength) 
+
+            if ($LeadingCharacter)
+            {
+                $PercentBar += $LeadingCharacter.ToString()
+                $BarLength = $BarLength - 1
+            }
+
+            $PercentBar += $RemainderCharacter.ToString() * ($BarLength - ($Percentage * $BarLength))
 
             if (!$NoBorder)
             {
