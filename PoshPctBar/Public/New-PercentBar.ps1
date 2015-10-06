@@ -38,7 +38,7 @@
     #>
 
     [CmdletBinding(DefaultParameterSetName='Border')]
-    [OutputType("System.String")]
+    [OutputType('System.String')]
     param
     (
         [Parameter(Mandatory = $true,
@@ -49,14 +49,17 @@
         [ValidateNotNullOrEmpty()]
         [decimal] $Percentage,
 
+        [char] $PercentCharacter = 'x',
+
+        [char] $RemainderCharacter = '.',
+
         [Parameter(Mandatory=$false,
-                   Position = 1,
+                   Position = 3,
                    ParameterSetName='Border')]
         [ValidateSet('[]', '{}', '()', '||', '/\', '--')]
         [string] $Border = '[]',
 
         [Parameter(Mandatory=$true,
-                   Position = 1,
                    ParameterSetName='NoBorder')]
         [switch] $NoBorder
     )
@@ -65,7 +68,8 @@
 	{
         try
         {
-            $PercentBar = 'x' * ([System.Math]::Round(( $Percentage )*100)/10) + '.' * (10-([System.Math]::Round(( $Percentage )*100)/10))
+            $PercentBar = $PercentCharacter.ToString() * ([System.Math]::Round(( $Percentage )*100)/10) 
+            $PercentBar += $RemainderCharacter.ToString() * (10-([System.Math]::Round(( $Percentage )*100)/10))
 
             if (!$NoBorder)
             {
