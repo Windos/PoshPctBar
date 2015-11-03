@@ -37,6 +37,15 @@ _See the [PowerShell Gallery](http://www.powershellgallery.com/packages/PoshPctB
 	PS C:\> New-PercentBar -Percent 0.2 -Length 20
 	
 	[xxxx................]
+	
+	# This example displays the Disk Letter, Label, Size and a Percent Bar prepresenting the freespace of all disks on the local system.
+	PS C:\> Get-WmiObject Win32_LogicalDisk | Select-Object -Property DeviceID, VolumeName, Size, @{N = 'Used'; E = {1 - ($_.FreeSpace / $_.Size) | New-PercentBar}}
+
+	DeviceID VolumeName          Size Used        
+	-------- ----------          ---- ----        
+	C:       OS          499512242176 [x.........]
+	D:       Games       320070479872 [xxxxx.....]
+	M:       MEDIA      1500299390976 [xxxxxxx...]
 
 ## History
 * [v0.3.0](https://github.com/Windos/PoshPctBar/releases/v0.3.0)

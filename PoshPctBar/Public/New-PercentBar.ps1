@@ -40,9 +40,21 @@ function New-PercentBar
     	
         .EXAMPLE
         New-PercentBar -Percent 0.2 -Length 20
+        
         This example is twice as long as the default percentage bar:
 	    
         [xxxx................]
+
+        .EXAMPLE
+        Get-WmiObject Win32_LogicalDisk | Select-Object -Property DeviceID, VolumeName, Size, @{N = 'Used'; E = {1 - ($_.FreeSpace / $_.Size) | New-PercentBar}}
+
+        This example displays the Disk Letter, Label, Size and a Percent Bar prepresenting the freespace of all disks on the local system.
+
+        DeviceID VolumeName          Size Used        
+        -------- ----------          ---- ----        
+        C:       OS          499512242176 [x.........]
+        D:       Games       320070479872 [xxxxx.....]
+        M:       MEDIA      1500299390976 [xxxxxxx...]
 
         .INPUTS
         System.Decimal
