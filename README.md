@@ -47,7 +47,7 @@ _See the [PowerShell Gallery](http://www.powershellgallery.com/packages/PoshPctB
   * First version with basic functionality.
 
 ## Credits
-Thanks to Kevin Dresser for the original idea and implememntation, which has since been bastardized beyond recognition (sorry...).
+Thanks to Kevin Dresser for the original idea and implementation, which has since been bastardized beyond recognition (sorry...).
 
 ## License
 * see [LICENSE](LICENSE) file
