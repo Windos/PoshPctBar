@@ -29,16 +29,30 @@ _See the [PowerShell Gallery](http://www.powershellgallery.com/packages/PoshPctB
     xxxxxxxx..
 	
 	# This example uses customized characters:
-	PS C:\> New-PercentBar -Percentage 0.8 -PercentCharacter '-' -RemainderCharacter ' '
+	PS C:\> New-PercentBar -Percent 0.8 -BarCharacter '-' -RemainderCharacter ' '
 	
 	[--------  ]
 	
 	# This example is twice as long as the default percentage bar:
-	PS C:\> New-PercentBar -Percentage 0.2 -BarLength 20
+	PS C:\> New-PercentBar -Percent 0.2 -Length 20
 	
 	[xxxx................]
+	
+	# This example displays the Disk Letter, Label, Size and a Percent Bar prepresenting the freespace of all disks on the local system.
+	PS C:\> Get-WmiObject Win32_LogicalDisk | Select-Object -Property DeviceID, VolumeName, Size, @{N = 'Used'; E = {1 - ($_.FreeSpace / $_.Size) | New-PercentBar}}
+
+	DeviceID VolumeName          Size Used        
+	-------- ----------          ---- ----        
+	C:       OS          499512242176 [x.........]
+	D:       Games       320070479872 [xxxxx.....]
+	M:       MEDIA      1500299390976 [xxxxxxx...]
 
 ## History
+* [v0.3.0](https://github.com/Windos/PoshPctBar/releases/v0.3.0)
+  * Adjusted parameter names, less ambiguity.
+  * Border parameter no longer defined as a set, was causing errors when using IntelliSense.
+  * Border parameter can now be any set of two characters provided as a string.
+  * Included a practical example of usage.
 * [v0.2.0](https://github.com/Windos/PoshPctBar/releases/v0.2.0)
   * Customizable percentage bar characters.
   * Optional leading character (e.g. [---->     ])
@@ -47,7 +61,7 @@ _See the [PowerShell Gallery](http://www.powershellgallery.com/packages/PoshPctB
   * First version with basic functionality.
 
 ## Credits
-Thanks to Kevin Dresser for the original idea and implememntation, which has since been bastardized beyond recognition (sorry...).
+Thanks to Kevin Dresser for the original idea and implementation, which has since been bastardized beyond recognition (sorry...).
 
 ## License
 * see [LICENSE](LICENSE) file
