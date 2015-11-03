@@ -32,14 +32,14 @@ function New-PercentBar
             xxxxxxxx..
 
             .EXAMPLE
-            New-PercentBar -Percentage 0.8 -PercentCharacter '-' -RemainderCharacter ' '
+            New-PercentBar -Percent 0.8 -BarCharacter '-' -RemainderCharacter ' '
         
             This example uses customized characters:
 	    
             [--------  ]
     	
             .EXAMPLE
-            C:\> New-PercentBar -Percentage 0.2 -BarLength 20
+            C:\> New-PercentBar -Percent 0.2 -Length 20
             This example is twice as long as the default percentage bar:
 	    
             [xxxx................]
@@ -56,20 +56,20 @@ function New-PercentBar
     param
     (
         [Parameter(Mandatory = $true,
-                Position = 0,
-                ValueFromPipeline = $true,
-                ValueFromPipelineByPropertyName = $true,
-        HelpMessage = 'Enter the percentage in the form of a decimal value between 0 and 1.')]
+                   Position = 0,
+                   ValueFromPipeline = $true,
+                   ValueFromPipelineByPropertyName = $true,
+                   HelpMessage = 'Enter the percentage in the form of a decimal value between 0 and 1.')]
         [ValidateNotNullOrEmpty()]
-        [decimal] $Percentage,
+        [decimal] $Percent,
 
-        [char] $PercentCharacter = 'x',
+        [char] $BarCharacter = 'x',
 
         [char] $RemainderCharacter = '.',
 
         [char] $LeadingCharacter,
 
-        [int] $BarLength = 10,
+        [int] $Length = 10,
 
         [Parameter(Mandatory = $false,
                 Position = 3,
@@ -86,15 +86,15 @@ function New-PercentBar
     {
         try
         {
-            $PercentBar = $PercentCharacter.ToString() * ($Percentage * $BarLength) 
+            $PercentBar = $BarCharacter.ToString() * ($Percent * $Length) 
 
             if ($LeadingCharacter)
             {
                 $PercentBar += $LeadingCharacter.ToString()
-                $BarLength = $BarLength - 1
+                $Length = $Length - 1
             }
 
-            $PercentBar += $RemainderCharacter.ToString() * ($BarLength - ($Percentage * $BarLength))
+            $PercentBar += $RemainderCharacter.ToString() * ($Length - ($Percent * $Length))
 
             if (!$NoBorder)
             {
