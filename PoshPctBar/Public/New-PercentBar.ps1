@@ -2,53 +2,53 @@
 function New-PercentBar
 {
     <#
-            .SYNOPSIS
-            Creates a new Percentage Bar.
+        .SYNOPSIS
+        Creates a new Percentage Bar.
 
-            .DESCRIPTION
-            The New-PercentBar cmdlet creates a new Percentage Bar, a visual representation of an quanity out of 100.
+        .DESCRIPTION
+        The New-PercentBar cmdlet creates a new Percentage Bar, a visual representation of an quanity out of 100.
 
-            The percentage bar is returned as a string with a border. The borderer can be excluded if desired.
+        The percentage bar is returned as a string with a border. The borderer can be excluded if desired.
 
-            .EXAMPLE
-            New-PercentBar -Percent 0.5
+        .EXAMPLE
+        New-PercentBar -Percent 0.5
 
-            This example generates a Percentage Bar that is 50% filled, with a default square bracket border:
+        This example generates a Percentage Bar that is 50% filled, with a default square bracket border:
 
-            [xxxxx.....]
+        [xxxxx.....]
 
-            .EXAMPLE
-            New-PercentBar -Percent 0.3 -Border '||'
+        .EXAMPLE
+        New-PercentBar -Percent 0.3 -Border '||'
 
-            This example generates a Percentage Bar that is 30% filled, with a border constructed out of pipe (|) characters:
+        This example generates a Percentage Bar that is 30% filled, with a border constructed out of pipe (|) characters:
 
-            |xxx.......|
+        |xxx.......|
 
-            .EXAMPLE
-            0.8 | New-PercentBar -NoBorder
+        .EXAMPLE
+        0.8 | New-PercentBar -NoBorder
 
-            This example takes a decimal value from the pipeline and generates a Percentage Bar that is 80% filled and doesn't have a border:
+        This example takes a decimal value from the pipeline and generates a Percentage Bar that is 80% filled and doesn't have a border:
 
-            xxxxxxxx..
+        xxxxxxxx..
 
-            .EXAMPLE
-            New-PercentBar -Percent 0.8 -BarCharacter '-' -RemainderCharacter ' '
+        .EXAMPLE
+        New-PercentBar -Percent 0.8 -BarCharacter '-' -RemainderCharacter ' '
         
-            This example uses customized characters:
+        This example uses customized characters:
 	    
-            [--------  ]
+        [--------  ]
     	
-            .EXAMPLE
-            C:\> New-PercentBar -Percent 0.2 -Length 20
-            This example is twice as long as the default percentage bar:
+        .EXAMPLE
+        C:\> New-PercentBar -Percent 0.2 -Length 20
+        This example is twice as long as the default percentage bar:
 	    
-            [xxxx................]
+        [xxxx................]
 
-            .INPUTS
-            System.Decimal
+        .INPUTS
+        System.Decimal
         
-            .LINK
-            https://github.com/Windos/PoshPctBar
+        .LINK
+        https://github.com/Windos/PoshPctBar
     #>
 
     [CmdletBinding(DefaultParameterSetName = 'Border')]
