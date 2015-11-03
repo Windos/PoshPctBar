@@ -48,7 +48,7 @@ _See the [PowerShell Gallery](http://www.powershellgallery.com/packages/PoshPctB
 	M:       MEDIA      1500299390976 [xxxxxxx...]
 
 ## History
-* [v0.3.0](https://github.com/Windos/PoshPctBar/releases/v0.3.0)
+* [v0.2.1](https://github.com/Windos/PoshPctBar/releases/v0.2.1)
   * Adjusted parameter names, less ambiguity.
   * Border parameter no longer defined as a set, was causing errors when using IntelliSense.
   * Border parameter can now be any set of two characters provided as a string.
