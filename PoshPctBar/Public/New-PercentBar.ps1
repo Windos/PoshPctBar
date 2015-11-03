@@ -39,7 +39,7 @@ function New-PercentBar
         [--------  ]
     	
         .EXAMPLE
-        C:\> New-PercentBar -Percent 0.2 -Length 20
+        New-PercentBar -Percent 0.2 -Length 20
         This example is twice as long as the default percentage bar:
 	    
         [xxxx................]
