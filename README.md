@@ -50,6 +50,7 @@ _See the [PowerShell Gallery](http://www.powershellgallery.com/packages/PoshPctB
 ## History
 * [v0.3.0](https://github.com/Windos/PoshPctBar/releases/v0.3.0)
   * Adjusted parameter names, less ambiguity.
+  * Included a practical example of usage.
 * [v0.2.0](https://github.com/Windos/PoshPctBar/releases/v0.2.0)
   * Customizable percentage bar characters.
   * Optional leading character (e.g. [---->     ])
