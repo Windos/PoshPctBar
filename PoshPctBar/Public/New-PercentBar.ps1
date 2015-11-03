@@ -85,7 +85,7 @@ function New-PercentBar
 
         [Parameter(Mandatory = $false,
                    ParameterSetName = 'Border')]
-        [ValidateSet('[]', '{}', '()', '||', '/\', '--')]
+        [ValidateLength(2,2)]
         [string] $Border = '[]',
 
         [Parameter(Mandatory = $true,
