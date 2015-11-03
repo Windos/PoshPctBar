@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/ybxevtcn2mil3fds?svg=true)](https://ci.appveyor.com/project/Windos/poshpctbar)
+
 # PoshPctBar
 Rudimentary PowerShell module for generating Percentage Bars
 
