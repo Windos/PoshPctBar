@@ -1,64 +1,65 @@
-﻿function New-PercentBar
+﻿#requires -Version 2
+function New-PercentBar
 {
     <#
-        .SYNOPSIS
-        Creates a new Percentage Bar.
+            .SYNOPSIS
+            Creates a new Percentage Bar.
 
-	    .DESCRIPTION
-        The New-PercentBar cmdlet creates a new Percentage Bar, a visual representation of an quanity out of 100.
+            .DESCRIPTION
+            The New-PercentBar cmdlet creates a new Percentage Bar, a visual representation of an quanity out of 100.
 
-        The percentage bar is returned as a string with a border. The borderer can be excluded if desired.
+            The percentage bar is returned as a string with a border. The borderer can be excluded if desired.
 
-	    .EXAMPLE
-        New-PercentBar -Percent 0.5
+            .EXAMPLE
+            New-PercentBar -Percent 0.5
 
-        This example generates a Percentage Bar that is 50% filled, with a default square bracket border:
+            This example generates a Percentage Bar that is 50% filled, with a default square bracket border:
 
-        [xxxxx.....]
+            [xxxxx.....]
 
-	    .EXAMPLE
-        New-PercentBar -Percent 0.3 -Border '||'
+            .EXAMPLE
+            New-PercentBar -Percent 0.3 -Border '||'
 
-        This example generates a Percentage Bar that is 30% filled, with a border constructed out of pipe (|) characters:
+            This example generates a Percentage Bar that is 30% filled, with a border constructed out of pipe (|) characters:
 
-        |xxx.......|
+            |xxx.......|
 
-        .EXAMPLE
-        0.8 | New-PercentBar -NoBorder
+            .EXAMPLE
+            0.8 | New-PercentBar -NoBorder
 
-        This example takes a decimal value from the pipeline and generates a Percentage Bar that is 80% filled and doesn't have a border:
+            This example takes a decimal value from the pipeline and generates a Percentage Bar that is 80% filled and doesn't have a border:
 
-        xxxxxxxx..
+            xxxxxxxx..
 
-        .EXAMPLE
-        New-PercentBar -Percentage 0.8 -PercentCharacter '-' -RemainderCharacter ' '
+            .EXAMPLE
+            New-PercentBar -Percentage 0.8 -PercentCharacter '-' -RemainderCharacter ' '
         
-        This example uses customized characters:
+            This example uses customized characters:
 	    
-	    [--------  ]
+            [--------  ]
     	
-        .EXAMPLE
-        C:\> New-PercentBar -Percentage 0.2 -BarLength 20
-	    This example is twice as long as the default percentage bar:
+            .EXAMPLE
+            C:\> New-PercentBar -Percentage 0.2 -BarLength 20
+            This example is twice as long as the default percentage bar:
 	    
-	    [xxxx................]
+            [xxxx................]
 
-        .INPUTS
-        System.Decimal
+            .INPUTS
+            System.Decimal
         
-        .LINK
-        https://github.com/Windos/PoshPctBar
+            .LINK
+            https://github.com/Windos/PoshPctBar
     #>
 
-    [CmdletBinding(DefaultParameterSetName='Border')]
+    [CmdletBinding(DefaultParameterSetName = 'Border')]
     [OutputType('System.String')]
     param
     (
         [Parameter(Mandatory = $true,
-                   Position = 0,
-                   ValueFromPipeline = $True,
-                   ValueFromPipelineByPropertyName = $True,
-                   HelpMessage = 'Enter the percentage in the form of a decimal value between 0 and 1.')]
+                Position = 0,
+                ValueFromPipeline = $true,
+                ValueFromPipelineByPropertyName = $true,
+        HelpMessage = 'Enter the percentage in the form of a decimal value between 0 and 1.')]
         [ValidateNotNullOrEmpty()]
         [decimal] $Percentage,
 
@@ -70,19 +71,19 @@
 
         [int] $BarLength = 10,
 
-        [Parameter(Mandatory=$false,
-                   Position = 3,
-                   ParameterSetName='Border')]
+        [Parameter(Mandatory = $false,
+                Position = 3,
+        ParameterSetName = 'Border')]
         [ValidateSet('[]', '{}', '()', '||', '/\', '--')]
         [string] $Border = '[]',
 
-        [Parameter(Mandatory=$true,
-                   ParameterSetName='NoBorder')]
+        [Parameter(Mandatory = $true,
+        ParameterSetName = 'NoBorder')]
         [switch] $NoBorder
     )
 
     process
-	{
+    {
         try
         {
             $PercentBar = $PercentCharacter.ToString() * ($Percentage * $BarLength) 
