@@ -72,13 +72,12 @@ function New-PercentBar
         [int] $Length = 10,
 
         [Parameter(Mandatory = $false,
-                Position = 3,
-        ParameterSetName = 'Border')]
+                   ParameterSetName = 'Border')]
         [ValidateSet('[]', '{}', '()', '||', '/\', '--')]
         [string] $Border = '[]',
 
         [Parameter(Mandatory = $true,
-        ParameterSetName = 'NoBorder')]
+                   ParameterSetName = 'NoBorder')]
         [switch] $NoBorder
     )
 
