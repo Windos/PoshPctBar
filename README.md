@@ -30,24 +30,24 @@ _See the [PowerShell Gallery](http://www.powershellgallery.com/packages/PoshPctB
     
     xxxxxxxx..
 	
-	# This example uses customized characters:
-	PS C:\> New-PercentBar -Percent 0.8 -BarCharacter '-' -RemainderCharacter ' '
-	
-	[--------  ]
-	
-	# This example is twice as long as the default percentage bar:
-	PS C:\> New-PercentBar -Percent 0.2 -Length 20
-	
-	[xxxx................]
-	
-	# This example displays the Disk Letter, Label, Size and a Percent Bar prepresenting the freespace of all disks on the local system.
-	PS C:\> Get-WmiObject Win32_LogicalDisk | Select-Object -Property DeviceID, VolumeName, Size, @{N = 'Used'; E = {1 - ($_.FreeSpace / $_.Size) | New-PercentBar}}
-
-	DeviceID VolumeName          Size Used        
-	-------- ----------          ---- ----        
-	C:       OS          499512242176 [x.........]
-	D:       Games       320070479872 [xxxxx.....]
-	M:       MEDIA      1500299390976 [xxxxxxx...]
+    # This example uses customized characters:
+    PS C:\> New-PercentBar -Percent 0.8 -BarCharacter '-' -RemainderCharacter ' '
+    
+    [--------  ]
+    
+    # This example is twice as long as the default percentage bar:
+    PS C:\> New-PercentBar -Percent 0.2 -Length 20
+    
+    [xxxx................]
+    
+    # This example displays the Disk Letter, Label, Size and a Percent Bar prepresenting the freespace of all disks on the local system.
+    PS C:\> Get-WmiObject Win32_LogicalDisk | Select-Object -Property DeviceID, VolumeName, Size, @{N = 'Used'; E = {1 - ($_.FreeSpace / $_.Size) | New-PercentBar}}
+  
+    DeviceID VolumeName          Size Used        
+    -------- ----------          ---- ----        
+    C:       OS          499512242176 [x.........]
+    D:       Games       320070479872 [xxxxx.....]
+    M:       MEDIA      1500299390976 [xxxxxxx...]
 
 ## History
 * [v0.2.1](https://github.com/Windos/PoshPctBar/releases/v0.2.1)
