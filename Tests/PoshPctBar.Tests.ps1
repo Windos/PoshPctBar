@@ -32,5 +32,12 @@ Describe "PoshPctBar PS$PSVersion" {
         #     $Commands -contains "gppv"   | Should be $True
         #     $Commands -contains "rppv"    | Should be $True           
         # }
+        It 'should execute all documented examples' {
+            New-PercentBar -Percent 0.5 | Should be '[xxxxx.....]'
+            New-PercentBar -Percent 0.3 -Border '||' | Should be '|xxx.......|'
+            0.8 | New-PercentBar -NoBorder | Should be 'xxxxxxxx..'
+            New-PercentBar -Percent 0.8 -BarCharacter '-' -RemainderCharacter ' ' | Should be '[--------  ]'
+            New-PercentBar -Percent 0.2 -Length 20 | Should be '[xxxx................]'
+        }
     }
 }
