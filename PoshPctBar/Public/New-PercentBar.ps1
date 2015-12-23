@@ -120,5 +120,3 @@ function New-PercentBar
         }
     }
 }
-#test
-
